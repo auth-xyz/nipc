@@ -1,0 +1,4 @@
+.envrc
+.direnv/
+default.nix
+template.nix
