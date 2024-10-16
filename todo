@@ -1,0 +1,6 @@
+Implement package search, checking if the package exists or not
+
+Implementing the whole "import" logic into the code, prolly the libnix
+^ the libnix will prolly have the package search bs aswell.
+
+-- Not go insane --
