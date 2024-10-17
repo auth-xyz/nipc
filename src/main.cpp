@@ -12,6 +12,8 @@ int main(int argc, char* argv[]) {
 
   cli.add_argument("install", "i", false, "Package to install");
   cli.add_argument("remove", "r", false, "Package to remove");
+  cli.add_argument("search", "q", false, "Searches for package in nixpkgs");
+  cli.add_flag("program", "p", "Given packages will be sent to programs instead");
   cli.parse(argc, argv);
 
   try {
@@ -32,19 +34,5 @@ int main(int argc, char* argv[]) {
   catch (const std::exception&) {
   }
 
-  /*cli.add_flag("verbose", "v", "Enable verbose output");*/
-  /*cli.add_argument("input", "i", true, "Input file");*/
-  /*cli.add_argument("output", "o", false, "Output file");*/
-  /*cli.parse(argc, argv);*/
-  /**/
-  /*if (cli.flag("verbose")) {*/
-  /*    std::cout << "Verbose mode enabled\n";*/
-  /*}*/
-  /**/
-  /*std::cout << "Input file: " << cli.argument("input") << '\n';*/
-  /*if (!cli.argument("output").empty()) {*/
-  /*    std::cout << "Output file: " << cli.argument("output") << '\n';*/
-  /*}*/
-  /**/
   return 0;
 }
