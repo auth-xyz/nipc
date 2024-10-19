@@ -3,9 +3,10 @@
 logo here
 
 -----
-#### NRPM
 
-NRPM, or Nix Reproducible Package Manager, is an idea I had (shocking I know), about making `nix-env` reproducible. There might be an already existing tool that does this, but as far as I know, I'm the first to do this the way I'm doing.
+### NRPM
+
+**NRPM**, or Nix Reproducible Package Manager, is an idea I had (shocking I know), about making `nix-env` reproducible. There might be an already existing tool that does this, but as far as I know, I'm the first to do this the way I'm doing.
 
 -----
 
@@ -20,11 +21,12 @@ NRPM, or Nix Reproducible Package Manager, is an idea I had (shocking I know), a
 
 ----
 
-#### Setting up
+### Setting up
 
 I haven't actually worked on the whole nixos installation process, nor have I finished the code, so when I actually do, I'll update this part.
 
 ----
-#### Contributing
+
+### Contributing
 
 If you think my code is shit, it's because it most likely is, and if you have any advice for me on how to improve my code, please reach out on discord <actually.auth>, or create an issue on this repo.
