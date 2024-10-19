@@ -13,7 +13,7 @@ public:
     void removeProgram(const std::string& prog);
     void listPackages() const;
     void listPrograms() const;
-    bool save();
+    bool save() const;
 
 private:
     std::string url;

@@ -4,6 +4,7 @@ comp/
 
 .direnv/
 
+nip
 
 default.nix
 template.nix

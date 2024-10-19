@@ -2,6 +2,8 @@
 #include "../headers/libnix.hpp"
 
 #include <iostream>
+#include <stdexcept>
+#include <string>
 
 int main(int argc, char* argv[]) {
   CLIParser cli;
@@ -10,7 +12,7 @@ int main(int argc, char* argv[]) {
     "template.nix"
   );
 
-  cli.add_argument("install", "i", false, "Package to install");
+  cli.add_argument("add", "a", false, "Package to add");
   cli.add_argument("remove", "r", false, "Package to remove");
   cli.add_argument("search", "q", false, "Searches for package in nixpkgs");
   cli.add_flag("program", "p", "Given packages will be sent to programs instead");
@@ -19,9 +21,9 @@ int main(int argc, char* argv[]) {
   try {
     handler.downloadTemplate();
 
-    if (!cli.argument("install").empty())
+    if (!cli.argument("add").empty())
     {
-      handler.addPackage(cli.argument("install"));
+      handler.addPackage(cli.argument("add"));
       handler.save();
     }
 
@@ -31,7 +33,8 @@ int main(int argc, char* argv[]) {
       handler.save();
     }
   }
-  catch (const std::exception&) {
+  catch (const std::exception& err) {
+    std::cout << err.what() << std::endl;
   }
 
   return 0;

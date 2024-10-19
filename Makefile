@@ -1,42 +1,37 @@
-
 CXX = g++
-CXXFLAGS = -std=c++20 -Wall -Wextra -O2
-LDFLAGS = 
+CXXFLAGS = -std=c++20 -Wall -lcurl
 
+ROOT_DIR = .
+LIBS_DIR = $(ROOT_DIR)/libs
+SRC_DIR = $(ROOT_DIR)/src
+HEADERS = ./headers
+BUILD = dist/compiled
+DIST = dist/build
 
-SRC_DIR = src
-HEADER_DIR = include
-BUILD_DIR = comp
-DIST_DIR = dist
+EXEC = $(DIST)/nip
 
-
+# Collect .cpp files
+LIBS := $(wildcard $(LIBS_DIR)/*.cpp)
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(patsubst $(SRC_DIR)/%.cpp, $(BUILD_DIR)/%.o, $(SRCS))
+OBJS := $(patsubst $(LIBS_DIR)/%.cpp, $(BUILD)/%.o, $(LIBS)) $(patsubst $(SRC_DIR)/%.cpp, $(BUILD)/%.o, $(SRCS))
 
+# Targets
+all: create_dirs $(EXEC)
 
-TARGET = $(DIST_DIR)/my_program
-
-
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-
-$(DIST_DIR):
-	mkdir -p $(DIST_DIR)
-
-
-all: $(TARGET)
-
-
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -I$(HEADER_DIR) -c $< -o $@
-
-$(TARGET): $(OBJS) | $(DIST_DIR)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
+create_dirs:
+	mkdir -p $(BUILD) && mkdir -p $(DIST)
 
 clean:
-	rm -rf $(BUILD_DIR) $(DIST_DIR)
+	rm -rf dist/
 
-rebuild: clean all
+# Build the executable
+$(EXEC): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(EXEC)
 
-.PHONY: all clean rebuild
+# Compile source files into object files, with or without headers
+$(BUILD)/%.o: $(LIBS_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -I$(HEADERS) -c $< -o $@
+
+$(BUILD)/%.o: $(SRC_DIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -I$(HEADERS) -c $< -o $@
 

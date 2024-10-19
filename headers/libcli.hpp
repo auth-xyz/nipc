@@ -7,7 +7,7 @@ class CLIParser {
 public:
   CLIParser();
 
-  void add_argument(const std::string& name, const std::string& alias = "", bool required = false, const std::string& description = "");
+  void add_argument(const std::string& name, const std::string& alias, bool required, const std::string& description);
   void add_flag(const std::string& name, const std::string& alias = "", const std::string& description = "", bool default_value = false);
   void parse(int argc, char* argv[]);
   bool flag(const std::string& name) const;
