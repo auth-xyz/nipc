@@ -1,4 +1,9 @@
 .envrc
+dist/
+comp/
+
 .direnv/
+
+
 default.nix
 template.nix
