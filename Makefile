@@ -34,7 +34,7 @@ $(BUILD)/%.o: $(SRC_DIR)/%.cpp
 
 # Check and distcheck targets
 check:
-	$(CXX) $(CXXFLAGS) -I$(HEADERS) $(SRCS) -o /dev/null
+	$(CXX) $(CXXFLAGS) -I$(HEADERS) $(SRCS) $(LIBS) -o /dev/null -lcurl
 	@echo "Check complete: No errors found."
 
 dist: create_dirs
