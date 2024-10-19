@@ -10,7 +10,6 @@ DIST = dist/build
 
 EXEC = $(DIST)/nip
 
-# Collect .cpp files
 LIBS := $(wildcard $(LIBS_DIR)/*.cpp)
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 OBJS := $(patsubst $(LIBS_DIR)/%.cpp, $(BUILD)/%.o, $(LIBS)) $(patsubst $(SRC_DIR)/%.cpp, $(BUILD)/%.o, $(SRCS))
@@ -24,14 +23,27 @@ create_dirs:
 clean:
 	rm -rf dist/
 
-# Build the executable
 $(EXEC): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(EXEC)
 
-# Compile source files into object files, with or without headers
 $(BUILD)/%.o: $(LIBS_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -I$(HEADERS) -c $< -o $@
 
 $(BUILD)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -I$(HEADERS) -c $< -o $@
+
+# Check and distcheck targets
+check:
+	$(CXX) $(CXXFLAGS) -I$(HEADERS) $(SRCS) -o /dev/null
+	@echo "Check complete: No errors found."
+
+dist: create_dirs
+	tar -czvf $(DIST)/project.tar.gz $(SRC_DIR) $(HEADERS) Makefile
+
+distcheck: dist
+	mkdir -p $(DIST)/temp
+	tar -xzvf $(DIST)/project.tar.gz -C $(DIST)/temp
+	cd $(DIST)/temp && $(MAKE)
+	cd $(DIST)/temp && $(MAKE) check
+	rm -rf $(DIST)/temp
 
