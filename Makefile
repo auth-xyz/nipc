@@ -12,9 +12,10 @@ EXEC = $(DIST)/nip
 
 LIBS := $(wildcard $(LIBS_DIR)/*.cpp)
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(patsubst $(LIBS_DIR)/%.cpp, $(BUILD)/%.o, $(LIBS)) $(patsubst $(SRC_DIR)/%.cpp, $(BUILD)/%.o, $(SRCS))
 
-# Targets
+OBJS := $(patsubst $(LIBS_DIR)/%.cpp, $(BUILD)/%.o, $(LIBS)) \
+        $(patsubst $(SRC_DIR)/%.cpp, $(BUILD)/%.o, $(SRCS))
+
 all: create_dirs $(EXEC)
 
 create_dirs:
@@ -32,18 +33,16 @@ $(BUILD)/%.o: $(LIBS_DIR)/%.cpp
 $(BUILD)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -I$(HEADERS) -c $< -o $@
 
-# Check and distcheck targets
 check:
 	$(CXX) $(CXXFLAGS) -I$(HEADERS) $(SRCS) $(LIBS) -o /dev/null -lcurl
 	@echo "Check complete: No errors found."
 
 dist: create_dirs
-	tar -czvf $(DIST)/project.tar.gz $(SRC_DIR) $(HEADERS) Makefile
+	tar -czvf $(DIST)/linux.tar.gz $(SRC_DIR) $(HEADERS) $(LIBS_DIR) Makefile
 
 distcheck: dist
-	mkdir -p $(DIST)/temp
-	tar -xzvf $(DIST)/project.tar.gz -C $(DIST)/temp
-	cd $(DIST)/temp && $(MAKE)
-	cd $(DIST)/temp && $(MAKE) check
-	rm -rf $(DIST)/temp
-
+	@mkdir -p /tmp/nip_distcheck
+	@tar -xzf $(DIST)/linux.tar.gz -C /tmp/nip_distcheck
+	@cd /tmp/nip_distcheck && $(MAKE) && $(MAKE) check
+	@rm -rf /tmp/nip_distcheck
+	@echo "Distcheck complete: Distribution builds and passes check successfully."
