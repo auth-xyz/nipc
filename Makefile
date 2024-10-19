@@ -24,7 +24,7 @@ clean:
 	rm -rf dist/
 
 $(EXEC): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(EXEC)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(EXEC) -lcurl 
 
 $(BUILD)/%.o: $(LIBS_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -I$(HEADERS) -c $< -o $@
