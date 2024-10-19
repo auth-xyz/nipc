@@ -5,7 +5,7 @@
 #include <numeric>
 #include <curl/curl.h>
 #include <json.hpp>
-#include "../headers/nipUtils.hpp"
+#include "../include/nipUtils.hpp"
 
 size_t writeData(void* ptr, size_t size, size_t nmemb, std::string* data) {
     size_t total_size = size * nmemb;

@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <memory>
-#include "../headers/libnix.hpp"
-#include "../headers/nipUtils.hpp"
+#include "../include/libnix.hpp"
+#include "../include/nipUtils.hpp"
 
 TemplateHandler::TemplateHandler(const std::string& url, const std::string& localFile)
     : url(url), localFile(localFile) {

@@ -1,8 +1,7 @@
-#include "../headers/libcli.hpp"
-#include "../headers/libnix.hpp"
+#include "../include/libcli.hpp"
+#include "../include/libnix.hpp"
 
-#include "../headers/nipSearch.hpp" 
-
+#include "../include/nipSearch.hpp" 
 
 #include <iostream>
 #include <stdexcept>

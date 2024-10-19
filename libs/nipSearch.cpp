@@ -1,5 +1,5 @@
-#include "../headers/nipSearch.hpp"
-#include "../headers/nipUtils.hpp"
+#include "../include/nipSearch.hpp"
+#include "../include/nipUtils.hpp"
 #include <stdexcept>
 #include <iostream>
 

@@ -5,7 +5,7 @@
 #include <unordered_map>
 #include <numeric>
 
-#include "../headers/libcli.hpp"
+#include "../include/libcli.hpp"
 
 CLIParser::CLIParser() {
     add_flag("help", "h", "Display this help message", false);
