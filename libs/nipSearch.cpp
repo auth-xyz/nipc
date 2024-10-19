@@ -1,4 +1,4 @@
-#include "../headers/libsearch.hpp"
+#include "../headers/nipSearch.hpp"
 #include <stdexcept>
 #include <iostream>
 

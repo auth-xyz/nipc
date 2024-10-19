@@ -1,6 +1,8 @@
 #include "../headers/libcli.hpp"
 #include "../headers/libnix.hpp"
-#include "../headers/libsearch.hpp"  // Include the NixAPI class
+
+#include "../headers/nipSearch.hpp" 
+
 
 #include <iostream>
 #include <stdexcept>
